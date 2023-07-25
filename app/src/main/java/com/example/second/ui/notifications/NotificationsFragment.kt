@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
@@ -31,9 +32,20 @@ class NotificationsFragment : Fragment() {
         val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+
         }
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    _binding?.textNotifications3?.setOnClickListener{
+   //     findNavController().navigate(NotificationsFragment.action_navigation_notifications_to_second_fragment("Test Send Args"))
+
+    }
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
