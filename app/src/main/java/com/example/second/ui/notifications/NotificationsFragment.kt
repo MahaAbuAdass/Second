@@ -40,7 +40,7 @@ class NotificationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     _binding?.textNotifications3?.setOnClickListener{
-   //     findNavController().navigate(NotificationsFragment.action_navigation_notifications_to_second_fragment("Test Send Args"))
+    findNavController().navigate(NotificationsFragmentDirections.actionNavigationNotificationsToSecondFragment())
 
     }
 

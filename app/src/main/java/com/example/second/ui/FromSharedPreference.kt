@@ -25,7 +25,7 @@ class FromSharedPreference : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvFromSharedPre.setOnClickListener{
-            findNavController().navigate()
+//            findNavController().navigate()
         }
     }
 }
