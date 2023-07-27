@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/first_fragment"
-        android:name="com.example.second.ui.first"
+        android:name="com.example.second.ui.First"
         android:label="First"
         tools:layout="@layout/first">
         <action
@@ -44,7 +44,7 @@
 
     <fragment
         android:id="@+id/second_fragment"
-        android:name="com.example.second.ui.second"
+        android:name="com.example.second.ui.Second"
         android:label="second"
         tools:layout="@layout/second"/>
 

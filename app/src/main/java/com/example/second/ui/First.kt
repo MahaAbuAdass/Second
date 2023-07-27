@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.second.databinding.FirstBinding
 
-class first : Fragment (){
+class First : Fragment (){
     private lateinit var binding : FirstBinding
 
 

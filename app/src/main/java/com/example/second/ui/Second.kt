@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.second.databinding.SecondBinding
 
-class second : Fragment() {
+class Second : Fragment() {
     private lateinit var binding: SecondBinding
 
     private val PREFS_NAME = "MyPrefsFile"
