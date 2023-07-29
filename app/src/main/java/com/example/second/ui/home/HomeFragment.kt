@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.second.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
- //   private val args by navArgs<HomeFragmentArgs>()
+ private val args by navArgs<HomeFragmentArgs>()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -26,8 +26,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+//        val homeViewModel =
+//            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.textHome.setOnClickListener{
-      //    findNavController().navigate(HomeFragment.action_navigation_home_to_first_fragment())
+         findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToFromSharedPreFragment())
 
         }
     }

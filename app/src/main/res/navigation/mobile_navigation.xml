@@ -10,9 +10,12 @@
         android:name="com.example.second.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
+        <argument android:name="home_data"
+            app:argType="string"/>
         <action
-            android:id="@+id/action_navigation_home_to_first_fragment"
-            app:destination="@id/first_fragment" />
+            android:id="@+id/action_navigation_home_to_from_shared_pre_fragment"
+            app:destination="@id/from_shared_pre_fragment" />
+
     </fragment>
 
     <fragment
@@ -34,9 +37,9 @@
 
     <fragment
         android:id="@+id/first_fragment"
-        android:name="com.example.second.ui.First"
+        android:name="com.example.second.ui.FirstFragment"
         android:label="First"
-        tools:layout="@layout/first">
+        tools:layout="@layout/first_fragment">
         <action
             android:id="@+id/action_first_fragment_to_second_fragment"
             app:destination="@id/second_fragment" />
@@ -44,15 +47,27 @@
 
     <fragment
         android:id="@+id/second_fragment"
-        android:name="com.example.second.ui.Second"
+        android:name="com.example.second.ui.SecondFragment"
         android:label="second"
-        tools:layout="@layout/second"/>
+        tools:layout="@layout/second_fragment"/>
 
+    <fragment android:id="@+id/from_shared_pre_fragment"
+        android:name="com.example.second.ui.sharedpreference.FromSharedPreference"
+        tools:layout="@layout/from_shared_preference">
+        <action
+            android:id="@+id/action_from_shared_pre_fragment_to_to_shared_pre_fragment"
+            app:destination="@id/to_shared_pre_fragment" />
+    </fragment>
+
+
+    <fragment android:id="@+id/to_shared_pre_fragment"
+        android:name="com.example.second.ui.sharedpreference.ToSharedPrefernce"
+        tools:layout="@layout/to_shared_preference"/>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.second.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/viewPager"
+        android:name="com.example.second.ui.viewpager.ViewPager"
+        tools:layout="@layout/view_pager"
+        />
 
 </navigation>
