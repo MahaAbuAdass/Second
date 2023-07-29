@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.FragmentDashboardBinding
 import com.example.second.ui.FirstFragment
@@ -35,15 +36,15 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.tvFromSharedPre.setOnClickListener {
-       //     findNavController().navigate(Dash)
+        _binding?.tvDashboard?.setOnClickListener(){
+            findNavController().navigate(DashboardFragmentDirections.actionNavigationDashboardToViewPager())
         }
     }
 
 
 
-        override fun onDestroyView() {
+
+     override    fun onDestroyView() {
             super.onDestroyView()
             _binding = null
         }

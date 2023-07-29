@@ -1,0 +1,52 @@
+package com.example.second.ui.recyclerview
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.second.R
+
+class RecyclerViewAdapter(private val items: List<RecyclerViewModel>,val notificationCallback:NotificationCallback) :
+    RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>()
+    {
+
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_list_layout, parent, false)
+            return ItemViewHolder(view)
+        }
+
+
+        override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+            holder.itemView.setOnClickListener {}
+            val item = items[position]
+            holder.xxxx(item)
+        }
+
+        override fun getItemCount(): Int {
+            return items.size
+        }
+
+        inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            private val itemTextView: TextView = itemView.findViewById(R.id.tv_first_name)
+            private val itemTextView2: TextView = itemView.findViewById(R.id.tv_second_name)
+            private val itemTextView3: TextView = itemView.findViewById(R.id.tv_id)
+
+            fun xxxx(item: RecyclerViewModel) {
+                itemTextView.text = item.FirstName
+                itemTextView2.text = item.SecondName
+                itemTextView3.text = item.ID
+            }
+        }
+
+
+
+        interface NotificationCallback {
+            fun itemClicked(item: RecyclerViewModel)
+
+        }
+    }
+

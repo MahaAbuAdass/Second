@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.SecondFragmentBinding
 
 class SecondFragment : Fragment() {
@@ -31,6 +32,11 @@ class SecondFragment : Fragment() {
         sharedPreferences = activity?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val message = sharedPreferences?.getString(KEY_NAME, "");
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+
+
+        binding.tvSecond.setOnClickListener(){
+            findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToRecyclerView())
+        }
     }
 }
 

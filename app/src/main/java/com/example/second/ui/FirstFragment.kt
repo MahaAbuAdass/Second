@@ -42,7 +42,7 @@ class FirstFragment : Fragment (){
             editor.putString(KEY_NAME, "Shared prefernce message")
             editor.apply()
 
-            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment())
+          //  findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment())
         }
     }
 

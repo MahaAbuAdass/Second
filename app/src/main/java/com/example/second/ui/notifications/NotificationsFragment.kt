@@ -42,6 +42,9 @@ class NotificationsFragment : Fragment() {
     _binding?.textNotifications3?.setOnClickListener{
     findNavController().navigate(NotificationsFragmentDirections.actionNavigationNotificationsToSecondFragment())
 
+
+
+
     }
 
     }

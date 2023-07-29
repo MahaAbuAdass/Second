@@ -27,8 +27,6 @@ class FromSharedPreference : Fragment() {
         return binding.root
     }
 
-
-
     private fun userInfoMode() = UserInfo(
         name = binding.etName.text.toString() ,
         email = binding.etEmail.text.toString() ,
