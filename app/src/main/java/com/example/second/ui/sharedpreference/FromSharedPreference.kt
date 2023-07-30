@@ -53,7 +53,7 @@ class FromSharedPreference : Fragment() {
         sharedPreferences = activity?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);  // private to prevent share it  with another app
 
         val editor = sharedPreferences?.edit()
-        editor?.putString("KEY_MY_DATA", jsonString)
+        editor?.putString("name", jsonString)
         editor?.apply()
     }
 }

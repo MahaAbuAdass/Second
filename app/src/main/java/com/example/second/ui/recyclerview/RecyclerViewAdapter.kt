@@ -1,52 +1,48 @@
 package com.example.second.ui.recyclerview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.second.R
+import com.example.second.databinding.ItemListLayoutBinding
 
-class RecyclerViewAdapter(private val items: List<RecyclerViewModel>,val notificationCallback:NotificationCallback) :
-    RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>()
-    {
+class RecyclerViewAdapter(
+    private val items: List<RecyclerViewModel>?,
+    private val notificationCallback: NotificationCallback
+) : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val binding = ItemListLayoutBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return ItemViewHolder(binding)
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_list_layout, parent, false)
-            return ItemViewHolder(view)
-        }
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        holder.bindData(items?.get(position))
+    }
 
+    override fun getItemCount(): Int {
+        return items?.size ?: 0
+    }
 
-        override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-            holder.itemView.setOnClickListener {}
-            val item = items[position]
-            holder.xxxx(item)
-        }
+    inner class ItemViewHolder(private val binding: ItemListLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        override fun getItemCount(): Int {
-            return items.size
-        }
+        fun bindData(item: RecyclerViewModel?) {
+            item?.let { recyclerViewModel ->
+                binding.tvFirstName.text = recyclerViewModel.FirstName
+                binding.tvSecondName.text = recyclerViewModel.SecondName
+                binding.tvId.text = recyclerViewModel.ID
 
-        inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            private val itemTextView: TextView = itemView.findViewById(R.id.tv_first_name)
-            private val itemTextView2: TextView = itemView.findViewById(R.id.tv_second_name)
-            private val itemTextView3: TextView = itemView.findViewById(R.id.tv_id)
-
-            fun xxxx(item: RecyclerViewModel) {
-                itemTextView.text = item.FirstName
-                itemTextView2.text = item.SecondName
-                itemTextView3.text = item.ID
+                // Set the click listener
+                binding.root.setOnClickListener {
+                    notificationCallback.itemClicked(recyclerViewModel)
+                }
             }
-        }
-
-
-
-        interface NotificationCallback {
-            fun itemClicked(item: RecyclerViewModel)
-
         }
     }
 
+    interface NotificationCallback {
+        fun itemClicked(item: RecyclerViewModel)
+    }
+}

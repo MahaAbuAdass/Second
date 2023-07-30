@@ -36,6 +36,11 @@
         <action
             android:id="@+id/action_navigation_notifications_to_second_fragment"
             app:destination="@id/second_fragment" />
+        <action
+            android:id="@+id/action_navigation_notifications_to_navigation_recycler_view_fragment_2"
+            app:destination="@id/navigation_recycler_view_fragment_2" />
+
+
     </fragment>
 
 
@@ -76,6 +81,11 @@
     <fragment
         android:id="@+id/recyclerView"
         android:name="com.example.second.ui.recyclerview.RecyclerViewFragment"
+        tools:layout="@layout/recycler_view"/>
+
+    <fragment
+        android:id="@+id/navigation_recycler_view_fragment_2"
+        android:name="com.example.second.ui.recyclerview.REcyclerViewFragment2"
         tools:layout="@layout/recycler_view"/>
 
 </navigation>
