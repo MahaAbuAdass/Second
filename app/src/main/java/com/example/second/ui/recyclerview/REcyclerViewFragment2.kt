@@ -39,18 +39,18 @@ class REcyclerViewFragment2 : Fragment() {
 
     private fun initRecyclerView(){
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        binding?.recyclerView?.adapter = getAdapter()
+    //    binding?.recyclerView?.adapter = getAdapter()
     }
 
-    private fun getAdapter(): SecondAdapter {
-        val adapter = SecondAdapter(getAdapterList(),
-            object : SecondAdapter.NotificationCallback2 {
-                override fun itemClicked(item: RecyclerViewModel) {
-                    //          findNavController().navigate(Recy)
-                }
-
-            })
-
-        return adapter
-    }
+//    private fun getAdapter(): SecondAdapter {
+//        val adapter = SecondAdapter(getAdapterList(),
+//            object : SecondAdapter.NotificationCallback2 {
+//                override fun itemClicked(item: RecyclerViewModel) {
+//                    //          findNavController().navigate(Recy)
+//                }
+//
+//            })
+//
+//        return adapter
+//    }
 }
