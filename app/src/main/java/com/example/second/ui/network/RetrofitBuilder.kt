@@ -1,5 +1,6 @@
 package com.example.second.ui.network
 
+import com.example.second.ui.signin.LoginRequest
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,5 +17,9 @@ class RetrofitBuilder {
 
 
     suspend fun getAllProduct()=apiService.allProducts()
+
+    suspend fun loginUser(loginRequest: LoginRequest?)=apiService.login(loginRequest)
+
+
 
 }

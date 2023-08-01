@@ -3,7 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/product">
+    app:startDestination="@+id/login">
+
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.second.ui.signin.SigninFragment"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_login_to_product"
+            app:destination="@id/product" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.example.second.ui.signup.SignUpFragment"
+        tools:layout="@layout/signup_fragment"/>
 
 
     <fragment
