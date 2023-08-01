@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,7 @@ binding = ProductBinding.inflate(inflater,container,false)
         }
         productViewModel.productResponseError.observe(viewLifecycleOwner) { productResponseError ->
 
+            Toast.makeText(activity, productResponseError, Toast.LENGTH_SHORT).show()
         }
     }
     private fun productAdapter(items: List<GetAllProductsData>) {
