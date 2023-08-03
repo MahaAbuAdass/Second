@@ -15,15 +15,16 @@ import com.example.second.databinding.LoginFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class SigninFragment : Fragment() , OnClickListener  {
+class SigninFragment : Fragment(), OnClickListener {
 
     private val PREFS_NAME = "MyPrefsFile"
     private val KEY_NAME = "name"
     private var sharedPreferences: SharedPreferences? = null
 
     private var signinViewModel: SigninViewModel? = null
-    private var binding : LoginFragmentBinding ?=null
+    private var binding: LoginFragmentBinding? = null
 
 
     override fun onCreateView(
@@ -31,8 +32,8 @@ class SigninFragment : Fragment() , OnClickListener  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-binding = LoginFragmentBinding.inflate(inflater,container,false)
-    return binding?.root
+        binding = LoginFragmentBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,16 +53,19 @@ binding = LoginFragmentBinding.inflate(inflater,container,false)
 
     private fun observeViewModel() {
         signinViewModel?.loginResponse?.observe(viewLifecycleOwner) {
-
             val editor = sharedPreferences!!.edit()
             editor.putString(KEY_NAME, it?.token)
             editor.apply()
+            findNavController().navigate(SigninFragmentDirections.actionLoginToProduct())
         }
         signinViewModel?.loginResponseError?.observe(viewLifecycleOwner) {
             Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
+    suspend fun mahaTest(){
+
+    }
     private fun loginRequest() =
         LoginRequest(binding?.phoneNumber?.text.toString(), binding?.password?.text.toString())
 
@@ -76,14 +80,19 @@ binding = LoginFragmentBinding.inflate(inflater,container,false)
 
     override fun onClick(v: View?) {
         when (v?.id) {
-                binding?.signIn?.id -> CoroutineScope(Dispatchers.IO).launch {
-                    signinViewModel?.login(loginRequest())
-                    //findNavController().navigate(SigninFragmentDirections.)
-                }
+            binding?.signIn?.id -> CoroutineScope(Dispatchers.IO).launch {
+                signinViewModel?.login(loginRequest())
+//                mahaTest()
+//                withContext(Dispatchers.Main){
+//                    findNavController().navigate(SigninFragmentDirections.actionLoginToProduct())
+//
+//                }
+            }
+
 
             binding?.tvSignup?.id -> findNavController().navigate(SigninFragmentDirections.actionLoginToSignup())
-            }
         }
     }
+}
 
 
