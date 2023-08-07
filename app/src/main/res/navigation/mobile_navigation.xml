@@ -3,18 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/menu">
+    app:startDestination="@+id/login">
+
+
+    <fragment
+        android:id="@+id/editAddress"
+        android:name="com.example.second.ui.addresses.edit.EditAddressFragment"
+        tools:layout="@layout/edit_address">
+        <argument
+            android:name="addressInfo"
+
+            app:argType="com.example.second.ui.addresses.GetCustomerAddressesData"/>
+    </fragment>
 
     <fragment
         android:id="@+id/menu"
         android:name="com.example.second.ui.MenuFragment"
-        tools:layout="@layout/menu_fragment"/>
+        tools:layout="@layout/menu_fragment">
+        <action
+            android:id="@+id/action_menu_to_address"
+            app:destination="@id/address" />
+        <action
+            android:id="@+id/action_menu_to_web_view"
+            app:destination="@id/web_view" />
+    </fragment>
 
 
     <fragment
         android:id="@+id/web_view"
-        android:name="com.example.second.ui.network.WebViewFragment"
-        tools:layout="@layout/web_view"/>
+        android:name="com.example.second.ui.WebPageFragment"
+        tools:layout="@layout/web_view">
+        <argument
+            android:name="url"
+            app:argType="string"/>
+    </fragment>
 
     <fragment
         android:id="@+id/login"
@@ -26,6 +48,9 @@
         <action
             android:id="@+id/action_login_to_product"
             app:destination="@id/product" />
+        <action
+            android:id="@+id/action_login_to_menu"
+            app:destination="@id/menu" />
     </fragment>
 
     <fragment
@@ -40,11 +65,21 @@
         tools:layout="@layout/product"/>
 
     <fragment
+        android:id="@+id/address"
+        android:name="com.example.second.ui.addresses.UserAddressesFragment"
+        tools:layout="@layout/address_list">
+        <action
+            android:id="@+id/action_address_to_editAddress"
+            app:destination="@id/editAddress" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.second.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-        <argument android:name="home_data"
+        <argument
+            android:name="home_data"
             app:argType="string"/>
         <action
             android:id="@+id/action_navigation_home_to_from_shared_pre_fragment"

@@ -21,5 +21,6 @@ class RetrofitBuilder {
     suspend fun loginUser(loginRequest: LoginRequest?)=apiService.login(loginRequest)
 
 
+    suspend fun getUserAddresses( auth: String)= apiService.getCustomerAddresses(auth)
 
 }

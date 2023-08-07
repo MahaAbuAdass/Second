@@ -60,6 +60,9 @@ class SigninFragment : Fragment(), OnClickListener {
         }
         signinViewModel?.loginResponseError?.observe(viewLifecycleOwner) {
             Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
+
+            findNavController().navigate(SigninFragmentDirections.
+
         }
     }
 
@@ -92,6 +95,7 @@ class SigninFragment : Fragment(), OnClickListener {
 
             binding?.tvSignup?.id -> findNavController().navigate(SigninFragmentDirections.actionLoginToSignup())
         }
+
     }
 }
 

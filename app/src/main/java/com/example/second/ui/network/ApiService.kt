@@ -1,10 +1,12 @@
 package com.example.second.ui.network
 
+import com.example.second.ui.addresses.CustomerAddressResponse
 import com.example.second.ui.productapi.GetAllProductsResponse
 import com.example.second.ui.signin.LoginRequest
 import com.example.second.ui.signin.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -19,4 +21,8 @@ suspend fun allProducts(): GetAllProductsResponse
     suspend fun login(@Body loginRequest: LoginRequest?): LoginResponse
 
 
+
+    // add token in header for authorized api
+    @GET("/api/Addresses/GetCustomerAddresses")
+    suspend fun getCustomerAddresses( @Header("Authorization") auth: String): CustomerAddressResponse
 }
