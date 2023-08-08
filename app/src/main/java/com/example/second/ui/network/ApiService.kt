@@ -1,5 +1,7 @@
 package com.example.second.ui.network
 
+import com.example.second.ui.addresses.AddCustomerAddressRequest
+import com.example.second.ui.addresses.BooleanDataResponse
 import com.example.second.ui.addresses.CustomerAddressResponse
 import com.example.second.ui.productapi.GetAllProductsResponse
 import com.example.second.ui.signin.LoginRequest
@@ -25,4 +27,12 @@ suspend fun allProducts(): GetAllProductsResponse
     // add token in header for authorized api
     @GET("/api/Addresses/GetCustomerAddresses")
     suspend fun getCustomerAddresses( @Header("Authorization") auth: String): CustomerAddressResponse
+
+
+    @POST("/api/Addresses/UpdateCustomerAddress")
+    suspend fun updateAddress(
+        @Body addCustomerAddressRequest: AddCustomerAddressRequest,
+        @Header("Authorization") auth: String
+    ): BooleanDataResponse
+
 }

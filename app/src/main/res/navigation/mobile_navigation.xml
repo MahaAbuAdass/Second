@@ -51,6 +51,7 @@
         <action
             android:id="@+id/action_login_to_menu"
             app:destination="@id/menu" />
+
     </fragment>
 
     <fragment

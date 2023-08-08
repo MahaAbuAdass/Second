@@ -42,9 +42,9 @@ data class AddCustomerAddressRequest(
     val address2: String?,
     val longitude: String?,
     val latitude: String?,
-    val contactPersonName: String? = null,
-    val contactPersonPhone: String? = null,
-    var id: Int? = null
+    val contactPersonName: String? ,
+    val contactPersonPhone: String?,
+    var id: Int?
 
 )
 

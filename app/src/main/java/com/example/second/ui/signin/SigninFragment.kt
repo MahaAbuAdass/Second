@@ -15,7 +15,6 @@ import com.example.second.databinding.LoginFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SigninFragment : Fragment(), OnClickListener {
 
@@ -53,22 +52,24 @@ class SigninFragment : Fragment(), OnClickListener {
 
     private fun observeViewModel() {
         signinViewModel?.loginResponse?.observe(viewLifecycleOwner) {
-            val editor = sharedPreferences!!.edit()
-            editor.putString(KEY_NAME, it?.token)
-            editor.apply()
-            findNavController().navigate(SigninFragmentDirections.actionLoginToProduct())
+            sharedPreferences?.edit()?.let { editor ->
+                editor.putString(KEY_NAME, it?.token)
+                editor.apply()
+            }
+            findNavController().navigate(SigninFragmentDirections.actionLoginToMenu())
         }
+
+
         signinViewModel?.loginResponseError?.observe(viewLifecycleOwner) {
             Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
 
-            findNavController().navigate(SigninFragmentDirections.
-
         }
     }
 
-    suspend fun mahaTest(){
+    suspend fun mahaTest() {
 
     }
+
     private fun loginRequest() =
         LoginRequest(binding?.phoneNumber?.text.toString(), binding?.password?.text.toString())
 
@@ -91,7 +92,6 @@ class SigninFragment : Fragment(), OnClickListener {
 //
 //                }
             }
-
 
             binding?.tvSignup?.id -> findNavController().navigate(SigninFragmentDirections.actionLoginToSignup())
         }
