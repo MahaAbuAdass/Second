@@ -28,4 +28,7 @@ class RetrofitBuilder {
 
     suspend fun editUserAddress(addCustomerAddressRequest: AddCustomerAddressRequest ,auth: String) =
         apiService.updateAddress(addCustomerAddressRequest,auth)
+
+    suspend fun deleteCustomerAddress(addCustomerAddressRequest: AddCustomerAddressRequest ,auth: String )=
+        apiService.updateAddress(addCustomerAddressRequest ,auth)
 }

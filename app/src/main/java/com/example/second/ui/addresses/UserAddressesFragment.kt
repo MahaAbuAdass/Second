@@ -18,6 +18,8 @@ import kotlinx.coroutines.launch
 
 class UserAddressesFragment : Fragment() {
     private var binding: AddressListBinding? = null
+    private var userAddressesvViewModel: UserAddressesViewModel? = null
+
 
     private val PREFS_NAME = "MyPrefsFile"
     private val KEY_NAME = "name"
@@ -45,27 +47,50 @@ class UserAddressesFragment : Fragment() {
         val myAuthKey = sharedPreferences?.getString(KEY_NAME, "")
 
 
-        val userAddressesvViewModel =
+        userAddressesvViewModel =
             ViewModelProvider(this)[UserAddressesViewModel::class.java]
-        CoroutineScope(Dispatchers.IO).launch {
-            userAddressesvViewModel.getUserAdresses(myAuthKey ?: "")
 
-        }
-
-        userAddressesvViewModel.getAddresses.observe(viewLifecycleOwner) { addressResponse ->
+        userAddressesvViewModel?.getAddresses?.observe(viewLifecycleOwner) { addressResponse ->
             addressResponse.data?.let {
                 addressesAdapter(it)
             }
         }
-        userAddressesvViewModel.getAddressesError.observe(viewLifecycleOwner) {
+        userAddressesvViewModel?.isAddressDeleted?.observe(viewLifecycleOwner) {
+            adapter?.items?.remove(it)
+            adapter?.notifyDataSetChanged()
+            // notify for any change
+        }
+
+        userAddressesvViewModel?.getAddressesError?.observe(viewLifecycleOwner) {
             Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
+    override fun onResume() { // used to prevent hit api every open the screen; only first time access it "if delete or edit
+        //keep the user in same scrolling
+        super.onResume()
+//      if(userAddressesvViewModel?.getAddresses?.value==null)
+        CoroutineScope(Dispatchers.IO).launch {
+            userAddressesvViewModel?.getUserAdresses(
+                sharedPreferences?.getString(KEY_NAME, "") ?: ""
+            )
+        }
+    }
 
-    private fun addressesAdapter(items: List<GetCustomerAddressesData>) {
-        val adapter = UserAddressesAdapter(items, deleteClicked = {}, editClicked = {
-       //     findNavController().navigate(UserAddress.actionUserAddressesToEditAddress(it))
+    private var adapter: UserAddressesAdapter? = null
+
+
+    private fun addressesAdapter(items: ArrayList<GetCustomerAddressesData>) {
+        val adapter = UserAddressesAdapter(items, deleteClicked = {
+            CoroutineScope(Dispatchers.IO).launch {
+                userAddressesvViewModel?.deleteCustomerAddress(
+                    it,
+                    sharedPreferences?.getString(KEY_NAME, "") ?: ""
+                )
+            }
+
+        }, editClicked = {
+            //     findNavController().navigate(UserAddress.actionUserAddressesToEditAddress(it))
         })
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView?.adapter = adapter

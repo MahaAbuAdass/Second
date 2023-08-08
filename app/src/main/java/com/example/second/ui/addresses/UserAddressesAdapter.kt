@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.second.R
 
 class UserAddressesAdapter (
-    private val items: List<GetCustomerAddressesData>,
+    val items: ArrayList<GetCustomerAddressesData>,  // make it array list to be able to edit it
     val deleteClicked: (getAllAddresses: GetCustomerAddressesData) -> Unit,  // to send function on constructor + unit if there is no return for the function
     // if the function has retrun type then it will be added mkan el Unit
     val editClicked: (getAllAddresses: GetCustomerAddressesData) -> Unit

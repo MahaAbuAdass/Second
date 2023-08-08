@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize      // use parelize if want to send object through args
 data class CustomerAddressResponse (
     @SerializedName("code") val code: Int?,
-    @SerializedName("data") val data: List<GetCustomerAddressesData>?,
+    @SerializedName("data") val data: ArrayList<GetCustomerAddressesData>?,
     @SerializedName("error") val error: BaseError?
 ): Parcelable
 
@@ -46,5 +46,8 @@ data class AddCustomerAddressRequest(
     val contactPersonPhone: String?,
     var id: Int?
 
+)
+data class DeleteCustomerAddressRequest(
+    val addressId: Int
 )
 

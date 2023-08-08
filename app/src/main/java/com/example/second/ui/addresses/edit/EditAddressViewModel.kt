@@ -19,13 +19,23 @@ class EditAddressViewModel : ViewModel() {
     val updateAddressError : LiveData<String> = _updateAddressError
 
 
-    fun updateUserAddressAPI(addCustomerAddressRequest: AddCustomerAddressRequest, auth: String){
-        viewModelScope.launch (Dispatchers.IO){
+    fun updateUserAddressAPI(addCustomerAddressRequest: AddCustomerAddressRequest, auth: String) {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = retrofitBuilder.editUserAddress(addCustomerAddressRequest,auth)
-                if (response.data==true)
+                val response = retrofitBuilder.editUserAddress(addCustomerAddressRequest, auth)
+                if (response.data == true)
+                {
+                    _updateAddress.postValue(true)
+                } else {
+                    _updateAddressError.postValue("Error: $response ")
+                }
             }
-        }
-    }
+        catch (e: Exception) {
+                _updateAddressError.postValue("An error occurred: ${e.message}")
+            }
 
+        }
+
+    }
 }
+

@@ -3,6 +3,7 @@ package com.example.second.ui.network
 import com.example.second.ui.addresses.AddCustomerAddressRequest
 import com.example.second.ui.addresses.BooleanDataResponse
 import com.example.second.ui.addresses.CustomerAddressResponse
+import com.example.second.ui.addresses.DeleteCustomerAddressRequest
 import com.example.second.ui.productapi.GetAllProductsResponse
 import com.example.second.ui.signin.LoginRequest
 import com.example.second.ui.signin.LoginResponse
@@ -33,6 +34,13 @@ suspend fun allProducts(): GetAllProductsResponse
     suspend fun updateAddress(
         @Body addCustomerAddressRequest: AddCustomerAddressRequest,
         @Header("Authorization") auth: String
+    ): BooleanDataResponse
+
+
+    @POST("api/Addresses/DeleteCustomerAddress")
+    suspend fun deleteCustomerAddress(
+        @Header("Authorization") auth: String,
+        @Body deleteCustomerAddressRequest: DeleteCustomerAddressRequest?
     ): BooleanDataResponse
 
 }
