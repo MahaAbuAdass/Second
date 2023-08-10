@@ -1,6 +1,7 @@
 package com.example.second.ui.network
 
 import com.example.second.ui.addresses.AddCustomerAddressRequest
+import com.example.second.ui.addresses.DeleteCustomerAddressRequest
 import com.example.second.ui.signin.LoginRequest
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,6 +30,12 @@ class RetrofitBuilder {
     suspend fun editUserAddress(addCustomerAddressRequest: AddCustomerAddressRequest ,auth: String) =
         apiService.updateAddress(addCustomerAddressRequest,auth)
 
-    suspend fun deleteCustomerAddress(addCustomerAddressRequest: AddCustomerAddressRequest ,auth: String )=
-        apiService.updateAddress(addCustomerAddressRequest ,auth)
+    suspend fun deleteCustomerAddress(
+        deleteCustomerAddressRequest: DeleteCustomerAddressRequest,
+        auth: String
+    ) = apiService.deleteCustomerAddress(auth, deleteCustomerAddressRequest)
+
+
+    suspend fun getOrders(auth: String) = apiService.getMyOrders(auth)
+
 }

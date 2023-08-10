@@ -4,6 +4,7 @@ import com.example.second.ui.addresses.AddCustomerAddressRequest
 import com.example.second.ui.addresses.BooleanDataResponse
 import com.example.second.ui.addresses.CustomerAddressResponse
 import com.example.second.ui.addresses.DeleteCustomerAddressRequest
+import com.example.second.ui.orders.GetMyOrdersResponse
 import com.example.second.ui.productapi.GetAllProductsResponse
 import com.example.second.ui.signin.LoginRequest
 import com.example.second.ui.signin.LoginResponse
@@ -43,4 +44,9 @@ suspend fun allProducts(): GetAllProductsResponse
         @Body deleteCustomerAddressRequest: DeleteCustomerAddressRequest?
     ): BooleanDataResponse
 
+
+    @GET("api/Orders/GetMyOrders")
+    suspend fun getMyOrders(
+        @Header("Authorization") auth: String
+    ): GetMyOrdersResponse
 }

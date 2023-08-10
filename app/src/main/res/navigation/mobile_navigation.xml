@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_menu_to_web_view"
             app:destination="@id/web_view" />
+        <action
+            android:id="@+id/action_menu_to_orders"
+            app:destination="@id/orders" />
     </fragment>
 
 
@@ -59,6 +62,10 @@
         android:name="com.example.second.ui.signup.SignUpFragment"
         tools:layout="@layout/signup_fragment"/>
 
+    <fragment
+        android:id="@+id/orders"
+        android:name="com.example.second.ui.orders.OrdersFragment"
+        tools:layout="@layout/order_list"/>
 
     <fragment
         android:id="@+id/product"

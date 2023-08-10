@@ -46,6 +46,9 @@ class MenuFragment : Fragment(), OnClickListener {
             binding?.tvAddress?.id -> {
                 findNavController().navigate(MenuFragmentDirections.actionMenuToAddress())
             }
+            binding?.tvOrder?.id -> {
+                findNavController().navigate(MenuFragmentDirections.actionMenuToOrders())
+            }
         }
     }
 

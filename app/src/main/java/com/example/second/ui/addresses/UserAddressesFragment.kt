@@ -90,7 +90,7 @@ class UserAddressesFragment : Fragment() {
             }
 
         }, editClicked = {
-            //     findNavController().navigate(UserAddress.actionUserAddressesToEditAddress(it))
+           findNavController().navigate(UserAddressesFragmentDirections.actionAddressToEditAddress(it))
         })
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView?.adapter = adapter

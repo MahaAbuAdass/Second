@@ -42,7 +42,7 @@ class SigninFragment : Fragment(), OnClickListener {
         initSharedPreferences()
         observeViewModel()
         initiate()
-
+        checkLoggedinUser()
     }
 
     private fun initiate() {
@@ -53,7 +53,7 @@ class SigninFragment : Fragment(), OnClickListener {
     private fun observeViewModel() {
         signinViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             sharedPreferences?.edit()?.let { editor ->
-                editor.putString(KEY_NAME, it?.token)
+                editor.putString(KEY_NAME, "bearer ${it?.token}")
                 editor.apply()
             }
             findNavController().navigate(SigninFragmentDirections.actionLoginToMenu())
@@ -96,6 +96,11 @@ class SigninFragment : Fragment(), OnClickListener {
             binding?.tvSignup?.id -> findNavController().navigate(SigninFragmentDirections.actionLoginToSignup())
         }
 
+    }
+    fun checkLoggedinUser(){
+        if (sharedPreferences?.getString(KEY_NAME,"")?.isNotEmpty() == true){
+            findNavController().navigate(SigninFragmentDirections.actionLoginToMenu())
+        }
     }
 }
 
