@@ -15,7 +15,6 @@ class UserAddressesAdapter (
     val editClicked: (getAllAddresses: GetCustomerAddressesData) -> Unit
 ) :
 
-
     RecyclerView.Adapter<UserAddressesAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

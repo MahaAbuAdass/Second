@@ -3,9 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/login">
+    app:startDestination="@+id/splash_screen">
 
-
+   <fragment
+        android:id="@+id/splash_screen"
+        android:name="com.example.second.ui.SplashScreenFragment"
+        tools:layout="@layout/splash_screen">
+       <action
+           android:id="@+id/action_splash_screen_to_login"
+           app:destination="@id/login" />
+       <action
+           android:id="@+id/action_splash_screen_to_signup"
+           app:destination="@id/signup" />
+       <action
+           android:id="@+id/action_splash_screen_to_menu"
+           app:destination="@id/menu" />
+   </fragment>
     <fragment
         android:id="@+id/editAddress"
         android:name="com.example.second.ui.addresses.edit.EditAddressFragment"

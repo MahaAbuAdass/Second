@@ -42,7 +42,6 @@ class SigninFragment : Fragment(), OnClickListener {
         initSharedPreferences()
         observeViewModel()
         initiate()
-        checkLoggedinUser()
     }
 
     private fun initiate() {
@@ -97,11 +96,7 @@ class SigninFragment : Fragment(), OnClickListener {
         }
 
     }
-    fun checkLoggedinUser(){
-        if (sharedPreferences?.getString(KEY_NAME,"")?.isNotEmpty() == true){
-            findNavController().navigate(SigninFragmentDirections.actionLoginToMenu())
-        }
-    }
+
 }
 
 

@@ -1,6 +1,8 @@
 package com.example.second.ui.productapi
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProductFragment : Fragment() {
-    private var binding : ProductBinding ?=null
+    private var binding: ProductBinding? = null
+    private var adapter: ProductAdapter? = null
 
 
     override fun onCreateView(
@@ -22,8 +25,8 @@ class ProductFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-binding = ProductBinding.inflate(inflater,container,false)
-    return binding?.root
+        binding = ProductBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
 
@@ -43,11 +46,24 @@ binding = ProductBinding.inflate(inflater,container,false)
 
             Toast.makeText(activity, productResponseError, Toast.LENGTH_SHORT).show()
         }
+
+
+        binding?.search?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                adapter?.filter?.filter(s)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
+
     private fun productAdapter(items: List<GetAllProductsData>) {
-        val adapter = ProductAdapter(items)
+         adapter = ProductAdapter(items)
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView?.adapter = adapter
     }
-
 }
