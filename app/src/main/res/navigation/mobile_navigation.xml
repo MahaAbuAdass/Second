@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_menu_to_orders"
             app:destination="@id/orders" />
+        <action
+            android:id="@+id/action_menu_to_product"
+            app:destination="@id/product" />
     </fragment>
 
 
@@ -62,9 +65,6 @@
             android:id="@+id/action_login_to_signup"
             app:destination="@id/signup" />
         <action
-            android:id="@+id/action_login_to_product"
-            app:destination="@id/product" />
-        <action
             android:id="@+id/action_login_to_menu"
             app:destination="@id/menu" />
 
@@ -72,18 +72,37 @@
 
     <fragment
         android:id="@+id/signup"
-        android:name="com.example.second.ui.signup.SignUpFragment"
-        tools:layout="@layout/signup_fragment"/>
+        android:name="com.example.second.ui.signup.RegistrationFragment"
+        tools:layout="@layout/signup_fragment">
+        <action
+            android:id="@+id/action_signup_to_product"
+            app:destination="@id/product" />
+    </fragment>
 
     <fragment
         android:id="@+id/orders"
         android:name="com.example.second.ui.orders.OrdersFragment"
-        tools:layout="@layout/order_list"/>
+        tools:layout="@layout/order_list">
+        <action
+            android:id="@+id/action_orders_to_order_details"
+            app:destination="@id/order_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/product"
         android:name="com.example.second.ui.productapi.ProductFragment"
         tools:layout="@layout/product"/>
+
+    <fragment
+        android:id="@+id/order_details"
+        android:name="com.example.second.ui.orders.orderdetails.OrderDetailsFragment"
+        tools:layout="@layout/order_details">
+        <argument
+            android:name="orderInfo"
+            app:argType="com.example.second.ui.orders.MyOrdersData"/>
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/address"

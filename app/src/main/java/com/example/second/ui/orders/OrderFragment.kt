@@ -62,7 +62,8 @@ class OrdersFragment : Fragment() {
     private fun ordersAdapter(items: List<MyOrdersData>) {
         val adapter = OrdersAdapter(items) {
 
-       //     findNavController().navigate(OrdersFragmentDirections.actionOrderToOrderDetails(it))
+    findNavController().navigate(OrdersFragmentDirections.actionOrdersToOrderDetails(it))
+
 
         }
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())

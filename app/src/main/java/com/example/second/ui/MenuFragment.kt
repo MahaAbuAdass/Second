@@ -33,6 +33,7 @@ class MenuFragment : Fragment(), OnClickListener {
         binding?.tvAboutUs?.setOnClickListener(this)
         binding?.tvAddress?.setOnClickListener(this)
         binding?.tvOrder?.setOnClickListener(this)
+        binding?.tvProduct?.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -48,6 +49,9 @@ class MenuFragment : Fragment(), OnClickListener {
             }
             binding?.tvOrder?.id -> {
                 findNavController().navigate(MenuFragmentDirections.actionMenuToOrders())
+            }
+            binding?.tvProduct?.id -> {
+                findNavController().navigate(MenuFragmentDirections.actionMenuToProduct())
             }
         }
     }

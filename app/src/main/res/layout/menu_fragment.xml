@@ -80,14 +80,28 @@
         />
 
     <TextView
-        android:id="@+id/tv_logout"
+        android:id="@+id/tv_product"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_privacy_policy"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
+        android:text="Products"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_product"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
         android:text="Log out"
         android:textStyle="bold"
         />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

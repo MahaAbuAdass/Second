@@ -76,7 +76,7 @@ class ProductAdapter (private val originalItems: List<GetAllProductsData>) :
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-        filteredItems = results?.values as List<GetAllProductsData>
+            filteredItems = results?.values as List<GetAllProductsData>
             notifyDataSetChanged()
         }
 

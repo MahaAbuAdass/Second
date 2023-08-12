@@ -8,6 +8,8 @@ import com.example.second.ui.orders.GetMyOrdersResponse
 import com.example.second.ui.productapi.GetAllProductsResponse
 import com.example.second.ui.signin.LoginRequest
 import com.example.second.ui.signin.LoginResponse
+import com.example.second.ui.signup.RegistrationRequestModel
+import com.example.second.ui.signup.RegistrationResponseModel
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -24,7 +26,10 @@ suspend fun allProducts(): GetAllProductsResponse
     @POST("api/Customers/Login")
     suspend fun login(@Body loginRequest: LoginRequest?): LoginResponse
 
-
+    @POST("api/Customers/Register")
+    suspend fun registration(
+        @Body registrationRequestModel: RegistrationRequestModel?
+    ): RegistrationResponseModel
 
     // add token in header for authorized api
     @GET("/api/Addresses/GetCustomerAddresses")

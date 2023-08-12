@@ -15,10 +15,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.second.R
 import com.example.second.databinding.SplashScreenBinding
 import com.example.second.ui.signin.SigninFragmentDirections
+import com.google.gson.Gson
 
-class SplashScreenFragment : Fragment() , OnClickListener {
-    private var binding : SplashScreenBinding ?=null
-    private var videView : VideoView ?=null
+class SplashScreenFragment : Fragment(), OnClickListener {
+    private var binding: SplashScreenBinding? = null
+    private var videView: VideoView? = null
 
     private val PREFS_NAME = "MyPrefsFile"
     private val KEY_NAME = "name"
@@ -29,53 +30,50 @@ class SplashScreenFragment : Fragment() , OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SplashScreenBinding.inflate(inflater,container,false)
+        binding = SplashScreenBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initSharedPreferences()
         playvideo()
         init()
         checkLoggedinUser()
-        initSharedPreferences()
-
-        // to send data from screen to another
-
     }
 
     private fun playvideo() {
         val videoPath = "android.resource://${requireActivity().packageName}/${R.raw.spalsh_video}"
         val videoUri = Uri.parse(videoPath)
         binding?.videoView?.setVideoURI(videoUri)
-        binding?.videoView?.setOnPreparedListener{ mediaPlayer : MediaPlayer ->
+        binding?.videoView?.setOnPreparedListener { mediaPlayer: MediaPlayer ->
             mediaPlayer.start()
-          //  mediaPlayer.isLooping=true
+            //  mediaPlayer.isLooping=true
         }
 
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        binding?.videoView?.stopPlayback()
-    }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            binding?.tvLogin?.id -> {findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenToLogin())}
-            binding?.tvRegister?.id -> {findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenToSignup())}
+            binding?.tvLogin?.id -> {
+                findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenToLogin())
+            }
+
+            binding?.tvRegister?.id -> {
+                findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenToSignup())
+            }
         }
     }
 
-    fun init()
-    {
+    fun init() {
         binding?.tvLogin?.setOnClickListener(this)
         binding?.tvRegister?.setOnClickListener(this)
     }
 
-    fun checkLoggedinUser(){
-        if (sharedPreferences?.getString(KEY_NAME,"")?.isNotEmpty() == true){
+    fun checkLoggedinUser() {
+        if (sharedPreferences?.getString(KEY_NAME, "")?.isNotEmpty() == true) {
             findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenToMenu())
         }
     }
@@ -83,7 +81,14 @@ class SplashScreenFragment : Fragment() , OnClickListener {
     private fun initSharedPreferences() {
         sharedPreferences = activity?.getSharedPreferences(
             PREFS_NAME,
-            Context.MODE_PRIVATE   );
+            Context.MODE_PRIVATE
+        );
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding?.videoView?.stopPlayback()
     }
 
 }
