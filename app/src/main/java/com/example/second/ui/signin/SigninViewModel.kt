@@ -20,6 +20,10 @@ class SigninViewModel : ViewModel() {
     private val _loginResponeError = MutableLiveData<BaseError?>()
     val loginResponseError: LiveData<BaseError?> = _loginResponeError
 
+    private val _showProgress = MutableLiveData<Boolean>()
+    val showProgress: LiveData<Boolean> = _showProgress
+
+
     suspend fun login(loginRequest: LoginRequest?) {
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -29,6 +33,9 @@ class SigninViewModel : ViewModel() {
             } catch (e: Exception) {
                 _loginResponeError.postValue(loginResponsess?.baseError)
                 // Handle error here if needed
+            }
+            finally { // finally execute after try and catch "always executed"
+                _showProgress.postValue(false)
             }
         }
     }

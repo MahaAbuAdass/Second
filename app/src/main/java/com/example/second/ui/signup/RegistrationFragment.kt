@@ -67,7 +67,6 @@ class RegistrationFragment : Fragment(), OnClickListener {
               // add coroutine scope " suspend fun should call from another suspend fun or using coroutine scope
               CoroutineScope(Dispatchers.IO).launch {
                   callSignUp()
-              findNavController().navigate(RegistrationFragmentDirections.actionSignupToProduct())
               }
           }
       }

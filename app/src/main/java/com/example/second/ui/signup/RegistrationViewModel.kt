@@ -8,32 +8,31 @@ import com.example.second.ui.network.RetrofitBuilder
 import com.example.second.ui.signin.BaseError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class RegistrationViewModel : ViewModel() {
     private val retrofitBuilder = RetrofitBuilder()
 
-    private val registrationRequestModel : RegistrationRequestModel?=null
+    private val registrationRequestModel: RegistrationRequestModel? = null
 
     private val _registrationRespones = MutableLiveData<RegistrationData?>()
-    val registrationResponse : LiveData<RegistrationData?> = _registrationRespones
+    val registrationResponse: LiveData<RegistrationData?> = _registrationRespones
 
     private val _errorResponse = MutableLiveData<BaseError?>()
-    val errorResponse : LiveData<BaseError?> = _errorResponse
+    val errorResponse: LiveData<BaseError?> = _errorResponse
 
 
-    suspend fun callRegistrationAPI (registrationRequestModel : RegistrationRequestModel){
+    suspend fun callRegistrationAPI(registrationRequestModel: RegistrationRequestModel) {
 
-        viewModelScope.launch (Dispatchers.IO){
-            retrofitBuilder.registerUser(registrationRequestModel).apply {
-                try {
-                    _registrationRespones.postValue(data)
-                } catch (e: Exception){
-                    _errorResponse.postValue(error)
-                }
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = retrofitBuilder.registerUser(registrationRequestModel)
+            try {
+                _registrationRespones.postValue(response.data)
+            } catch (e: Exception) {
+                _errorResponse.postValue(response.error)
             }
+
         }
 
-    }
 
+    }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.LoginFragmentBinding
+import com.example.second.ui.ProgressBarLoader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ class SigninFragment : Fragment(), OnClickListener {
     private var signinViewModel: SigninViewModel? = null
     private var binding: LoginFragmentBinding? = null
 
+    private var progressBarLoader: ProgressBarLoader? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +39,7 @@ class SigninFragment : Fragment(), OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBarLoader = ProgressBarLoader(requireContext())
 
         signinViewModel = ViewModelProvider(this)[SigninViewModel::class.java]
         initSharedPreferences()
@@ -62,6 +65,11 @@ class SigninFragment : Fragment(), OnClickListener {
         signinViewModel?.loginResponseError?.observe(viewLifecycleOwner) {
             Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
 
+        }
+        signinViewModel?.showProgress?.observe(viewLifecycleOwner) {
+            if (it == true)
+                progressBarLoader?.show()
+            else progressBarLoader?.dismiss()
         }
     }
 
