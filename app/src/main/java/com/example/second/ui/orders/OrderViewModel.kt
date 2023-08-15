@@ -17,6 +17,8 @@ class OrderViewModel : ViewModel() {
     private val _getOrdersError = MutableLiveData<String>()
     val getOrdersError : LiveData<String> = _getOrdersError
 
+    private val _getProducts = MutableLiveData<List<GetAllProductsData>?>()
+    val getProducts : LiveData<List<GetAllProductsData>?> = _getProducts
 
     fun getOrders(auth : String){
         viewModelScope.launch(Dispatchers.IO){

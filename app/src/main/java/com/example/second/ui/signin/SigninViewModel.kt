@@ -25,6 +25,7 @@ class SigninViewModel : ViewModel() {
 
 
     suspend fun login(loginRequest: LoginRequest?) {
+        _showProgress.postValue(true)
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -42,4 +43,3 @@ class SigninViewModel : ViewModel() {
 
 
 }
-

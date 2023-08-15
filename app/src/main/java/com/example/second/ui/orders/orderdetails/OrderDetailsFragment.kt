@@ -5,13 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.second.databinding.OrderDetailsBinding
 import com.example.second.ui.addresses.edit.EditAddressFragmentArgs
+import com.example.second.ui.orders.GetAllProductsData
+import com.example.second.ui.orders.MyOrdersData
+import com.example.second.ui.orders.OrderViewModel
+import com.example.second.ui.orders.OrdersAdapter
+import com.example.second.ui.orders.OrdersFragmentDirections
 
 class OrderDetailsFragment : Fragment() {
     private var binding : OrderDetailsBinding ?= null
     private val navArgs by navArgs<OrderDetailsFragmentArgs>()
+    private var ordersViewModels : OrderViewModel ?=null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +39,26 @@ class OrderDetailsFragment : Fragment() {
         binding?.tvOrderDate?.text= navArgs.orderInfo.createDate
         binding?.tvPrice?.text = navArgs.orderInfo.totalPrice.toString()
 
+        ordersViewModels?.getProducts?.observe(viewLifecycleOwner) {
+            it?.let {
+                productsAdapter(it)
+
+            }
+        }
+
+
     }
+    private fun productsAdapter(items: List<GetAllProductsData>) {
+        val adapter = productsAdapter(items)
+
+  //          findNavController().navigate(OrdersFragmentDirections.actionOrdersToOrderDetails(it))
+
+
+        binding?.recyclerView3?.layoutManager = LinearLayoutManager(requireContext())
+        binding?.recyclerView3?.adapter = adapter
+
+    }
+
+
 
 }

@@ -2,8 +2,10 @@ package com.example.second.ui.network
 
 import com.example.second.ui.addresses.AddCustomerAddressRequest
 import com.example.second.ui.addresses.DeleteCustomerAddressRequest
+import com.example.second.ui.logout.LogoutRequestModel
 import com.example.second.ui.signin.LoginRequest
 import com.example.second.ui.signup.RegistrationRequestModel
+import com.example.second.ui.userinfo.UpdateMyInfoRequest
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Header
@@ -41,4 +43,13 @@ class RetrofitBuilder {
 
 
     suspend fun registerUser(registrationRequestModel: RegistrationRequestModel) = apiService.registration(registrationRequestModel)
+
+    suspend fun logoutUser(logoutRequestModel: LogoutRequestModel,auth: String) = apiService.logout(logoutRequestModel,auth)
+
+    suspend fun getUserInfo(auth: String)= apiService.getMyInfo(auth)
+
+    suspend fun updateInfo(updateMyInfoRequest: UpdateMyInfoRequest,auth: String)=apiService.updateMyInfo(updateMyInfoRequest,auth)
+
+
+
 }
