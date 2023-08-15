@@ -39,6 +39,7 @@ class OrderDetailsFragment : Fragment() {
         binding?.tvOrderDate?.text= navArgs.orderInfo.createDate
         binding?.tvPrice?.text = navArgs.orderInfo.totalPrice.toString()
 
+
         ordersViewModels?.getProducts?.observe(viewLifecycleOwner) {
             it?.let {
                 productsAdapter(it)
@@ -49,10 +50,7 @@ class OrderDetailsFragment : Fragment() {
 
     }
     private fun productsAdapter(items: List<GetAllProductsData>) {
-        val adapter = productsAdapter(items)
-
-  //          findNavController().navigate(OrdersFragmentDirections.actionOrdersToOrderDetails(it))
-
+        val adapter = ProductsAdapter(items)
 
         binding?.recyclerView3?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView3?.adapter = adapter
