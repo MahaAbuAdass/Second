@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +17,7 @@ import com.example.second.databinding.OrderListBinding
 
 class OrdersFragment : Fragment() {
     private var binding: OrderListBinding? = null
-
-    private var ordersViewModels: OrderViewModel? = null
+    private val ordersViewModels by viewModels<OrderViewModel>()
 
     private val PREFS_NAME = "MyPrefsFile"
     private val KEY_NAME = "name"
@@ -46,8 +47,6 @@ class OrdersFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        ordersViewModels = ViewModelProvider(this)[OrderViewModel::class.java]
-
         ordersViewModels?.getOrders?.observe(viewLifecycleOwner) {
             it?.let {
                 ordersAdapter(it)
@@ -81,6 +80,4 @@ class OrdersFragment : Fragment() {
     private fun init() {
 
     }
-
-
 }
