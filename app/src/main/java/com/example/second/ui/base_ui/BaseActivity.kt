@@ -19,7 +19,8 @@ open class BaseActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
   mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mainBinding?.navView)
+        setContentView(mainBinding?.root)
+        navView = mainBinding?.navView!!
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         mainBinding?.toolbar?.backToolbar?.setOnClickListener{
             onBackPressed()

@@ -1,4 +1,4 @@
-package com.example.second.ui
+package com.example.second.ui.base_ui
 
 import android.view.View
 import androidx.core.view.isVisible
