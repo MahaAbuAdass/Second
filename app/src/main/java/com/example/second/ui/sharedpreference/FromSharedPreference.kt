@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.FromSharedPreferenceBinding
+import com.example.second.ui.base_ui.BaseFragment
 import com.google.gson.Gson
 
-class FromSharedPreference : Fragment() {
+class FromSharedPreference : BaseFragment() {
+
+
     private lateinit var binding: FromSharedPreferenceBinding
 
     private val PREFS_NAME = "MyPrefsFile"

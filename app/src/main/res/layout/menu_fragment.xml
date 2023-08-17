@@ -102,6 +102,16 @@
         android:text="Log out"
         android:textStyle="bold"
         />
-
+    <TextView
+        android:id="@+id/tv_bottom_sheet"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:text="Bottom Sheet"
+        android:textStyle="bold"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

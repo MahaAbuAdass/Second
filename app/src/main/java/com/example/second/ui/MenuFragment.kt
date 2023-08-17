@@ -10,9 +10,13 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.second.databinding.BottomSheetBinding
 import com.example.second.databinding.MenuFragmentBinding
+import com.example.second.generic.GeneralBottomSheetDialog
+import com.example.second.ui.base_ui.BaseFragment
 import com.example.second.ui.logout.LogoutRequestModel
 import com.example.second.ui.logout.LogoutViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +25,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
-class MenuFragment : Fragment(), OnClickListener {
+class MenuFragment(activity: FragmentActivity) : BaseFragment(), OnClickListener {
     private var binding: MenuFragmentBinding? = null
     private var logouViewModel : LogoutViewModel?=null
     private val PREFS_NAME = "MyPrefsFile"
@@ -81,6 +85,8 @@ class MenuFragment : Fragment(), OnClickListener {
         binding?.tvProduct?.setOnClickListener(this)
         binding?.tvLogout?.setOnClickListener(this)
         binding?.tvProfile?.setOnClickListener(this)
+        binding?.tvBottomSheet?.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
@@ -92,8 +98,25 @@ class MenuFragment : Fragment(), OnClickListener {
             binding?.tvProduct?.id ->  findNavController().navigate(MenuFragmentDirections.actionMenuToProduct())
             binding?.tvLogout?.id -> callLogout()
             binding?.tvProfile?.id -> findNavController().navigate(MenuFragmentDirections.actionMenuToUserProfile())
+            binding?.tvBottomSheet?.id -> bottomSheet()
         }
     }
+
+
+    fun bottomSheet(){
+        object : GeneralBottomSheetDialog<BottomSheetBinding>(mainActivity){
+            override fun getViewBinding() = BottomSheetBinding.inflate(layoutInflater)
+
+            override fun onLayoutCreated(view: GeneralBottomSheetDialog<BottomSheetBinding>) {
+                binding.btn.setOnClickListener{
+                    findNavController().navigate(MenuFragmentDirections.actionMenuToOrders())
+                }
+            }
+
+
+        }.dismissible().show()
+    }
+
 
 }
 

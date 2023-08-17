@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment() {
 
 
         toolbarHomeButton{
-            Toast.makeText(activity,"Home Icon", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToFromSharedPreFragment())
         }
     }
 
