@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.FragmentNotificationsBinding
+import com.example.second.ui.base_ui.BaseFragment
 
-class NotificationsFragment : Fragment(), OnClickListener {
+class NotificationsFragment : BaseFragment(), OnClickListener {
 
     private var _binding: FragmentNotificationsBinding? = null
     override fun onCreateView(

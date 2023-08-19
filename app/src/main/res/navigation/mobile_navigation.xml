@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/menu">
+    app:startDestination="@+id/navigation_dashboard">
 
    <fragment
         android:id="@+id/splash_screen"
@@ -150,6 +150,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_viewPager"
             app:destination="@id/viewPager" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_menu"
+            app:destination="@id/menu" />
     </fragment>
 
     <fragment

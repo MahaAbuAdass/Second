@@ -11,23 +11,22 @@ import com.example.second.ui.home.HomeFragment
 import com.example.second.ui.notifications.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
     var mainBinding: ActivityMainBinding? = null
     lateinit var navController: NavController
-
     protected lateinit var navView: BottomNavigationView
-        override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-  mainBinding = ActivityMainBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding?.root)
         navView = mainBinding?.navView!!
         navController = findNavController(R.id.nav_host_fragment_activity_main)
-        mainBinding?.toolbar?.backToolbar?.setOnClickListener{
+        mainBinding?.toolbar?.backToolbar?.setOnClickListener {
             onBackPressed()
         }
-
     }
+
 
     private fun getCurrentFragment() =
         supportFragmentManager.fragments[0].childFragmentManager.fragments[0]

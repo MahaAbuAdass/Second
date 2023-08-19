@@ -47,8 +47,7 @@ open class BaseFragment : Fragment() {
     override fun onResume() {
         initToolbar()
         super.onResume()
-        mainActivity.mainBinding?.navView?.isVisible =
-            mainActivity.isMainFragments()
+        mainActivity.mainBinding?.navView?.isVisible = mainActivity.isMainFragments()
     }
 
 

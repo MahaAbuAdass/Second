@@ -11,10 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.second.databinding.FragmentDashboardBinding
 import com.example.second.ui.FirstFragment
 import com.example.second.ui.SecondFragment
+import com.example.second.ui.base_ui.BaseFragment
 import com.example.second.ui.home.HomeFragmentDirections
 import com.example.second.ui.viewpager.ViewPagerAdapter
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     // This property is only valid between onCreateView and
@@ -37,7 +38,8 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding?.tvDashboard?.setOnClickListener(){
-            findNavController().navigate(DashboardFragmentDirections.actionNavigationDashboardToViewPager())
+            findNavController().navigate(DashboardFragmentDirections.actionNavigationDashboardToMenu())
+            //actionNavigationDashboardToViewPager())
         }
     }
 

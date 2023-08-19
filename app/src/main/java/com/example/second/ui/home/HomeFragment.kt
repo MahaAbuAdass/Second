@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.second.databinding.BottomSheetBinding
 import com.example.second.databinding.FragmentHomeBinding
+import com.example.second.generic.GeneralBottomSheetDialog
+import com.example.second.ui.MenuFragmentDirections
 import com.example.second.ui.base_ui.BaseFragment
 
 class HomeFragment : BaseFragment() {
@@ -51,7 +54,8 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.textHome.setOnClickListener{
-         findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToFromSharedPreFragment())
+            bottomSheet()
+    //     findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToFromSharedPreFragment())
 
         }
     }
@@ -59,5 +63,19 @@ class HomeFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun bottomSheet(){
+        object : GeneralBottomSheetDialog<BottomSheetBinding>(mainActivity){
+            override fun getViewBinding() = BottomSheetBinding.inflate(layoutInflater)
+
+            override fun onLayoutCreated(view: GeneralBottomSheetDialog<BottomSheetBinding>) {
+                binding.btn.setOnClickListener{
+                    findNavController().navigate(MenuFragmentDirections.actionMenuToOrders())
+                }
+            }
+
+
+        }.dismissible().show()
     }
 }
